@@ -114,6 +114,9 @@
     rafId = requestAnimationFrame(tick);
   }
 
+  function onWheel(e) { e.preventDefault(); reveal(); }
+  function onTouchMove(e) { e.preventDefault(); reveal(); }
+
   // Fades the intro out, cross-dissolving into the home page underneath.
   function reveal() {
     if (!armed || leaving) return; // no reveal until the user actually does something
@@ -121,14 +124,17 @@
     clearInterval(spawnTimer);
     introEl.classList.add('leaving');
     var headline = document.querySelector('.headline');
-    if (headline) headline.classList.add('reveal-in'); 
-    htmlEl.classList.remove('intro-active');
-    document.body.classList.remove('intro-active');
-    window.removeEventListener('wheel', reveal);
-    window.removeEventListener('touchmove', reveal);
+    if (headline) headline.classList.add('reveal-in');
     window.removeEventListener('keydown', onKey);
+    // wheel/touchmove + the scroll lock stay in place until the fade fully
+    // finishes below, removing them here would let this same gesture (or
+    // its trackpad momentum) scroll the home page while it's still fading in.
     introEl.addEventListener('transitionend', function () {
-      cancelAnimationFrame(rafId);                          // stars keep falling/pushable while the overlay fades, then stop
+      cancelAnimationFrame(rafId);
+      htmlEl.classList.remove('intro-active');
+      document.body.classList.remove('intro-active');
+      window.removeEventListener('wheel', onWheel);
+      window.removeEventListener('touchmove', onTouchMove);
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('mouseleave', onMouseLeave);
       introEl.remove();
