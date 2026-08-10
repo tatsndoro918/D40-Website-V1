@@ -191,3 +191,26 @@
   window.addEventListener('mousemove', onMove, { passive: true });
   requestAnimationFrame(tick);
 })();
+
+///Positioning section
+(function () {
+  var section = document.querySelector('.positioning');
+  if (!section) return;
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    section.classList.add('in-view'); // show immediately, no scroll-reveal
+    return;
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        section.classList.add('in-view');
+        observer.unobserve(section); // reveal once, don't re-trigger scrolling back up
+      }
+    });
+  }, { threshold: 0.25 });
+
+  observer.observe(section);
+})();
