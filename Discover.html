@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="author" content="Tatenda Ndoro">
+  <meta name="description" content="The official website for Cordonia">
+  <link rel="icon" type="image/png" href="Assests/Favicon/C Logo Black (1).png">
+  <title>Discover</title>
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <header class="site-header" role="banner">
+
+    <nav class="nav" aria-label="primary-navigation">
+
+      <a class="brand" href="GodHasDonia.html" aria-label="Home">
+        <h1><b><i>CORDONIA</i></b></h1><span>Magazine</span>
+      </a>
+
+      <div class="controls">
+        <button id="themeToggle" class="btn toggle" aria-pressed="true" title="Toggle theme">Dark • Light</button>
+        <a class="btn" href="https://instagram.com/godhasdonia" target="_blank" rel="noopener">Follow @godhasdonia</a>
+        <a class="btn" href="https://instagram.com/godhasdonia" target="_blank" rel="noopener">Log in</a>
+        <a class="btn" href="https://instagram.com/godhasdonia" target="_blank" rel="noopener">Sign in</a>
+      </div>
+
+    </nav>
+
+      <div> 
+        <!-- New navigation menu under header -->
+        <nav class="sub-nav" aria-label="Main navigation">
+
+        <ul>
+          <h2><li><a href="GodHasDonia.html">Home</a></li></h2>
+          <h2><li><a href="discover.html">Discover</a></li></h2>
+          <h2><li><a href="radio.html">Highlife Radio</a></li></h2>
+          <h2><li><a href="shop.html">Shop</a></li></h2>
+        </ul>
+
+        </nav>
+      </div>
+    
+  </header>
+
+  <main>
+
+    <section class="hero">
+
+      <div class="kicker">Magazine</div>
+      
+      <h2 class="title">Visual articles, distilled.</h2>
+      
+      <p class="subtitle">A living archive of carousel-style stories, fashion, culture, and ideas, curated from <a href="https://www.instagram.com/godhasdonia/">@godhasdonia</a>. Each post opens into a full slide experience with captions.</p>
+    
+    </section>
+
+    <section class="articles">
+
+      <h2 class="section-title">Articles:</h2>
+      <div class="main-article-title">
+        <a class="main-article-link" href="Sumayya.html"><h2>Who's Moving Us: <br> <b><i>SUMAYYA VALLY</i></b> - Architect of Possibility</h2></a>
+      </div>
+      
+      <div class="articles-layout">
+        <article class="main-article">
+          <a href="Sumayya.html"><img src="Assests/Sumayya/Cover.png" width="300px" alt="Sumayya Vally"></a>
+        </article>
+    
+        <div class="side-articles">
+            <article class="side-article">
+              <a class="article-link" href="Afrofuturism2.html"><img src="Assests/Futurism 2/Cover Page With nothing.png" alt="In Company"></a>
+              <a class="side-article-link" href="Afrofuturism2.html"><h2>Let's Talk About:<br><i>Afrofuturism 2</i> - Part 2</h2></a>
+            </article>
+
+            <article class="side-article">
+              <a href="InCompany.html"><img src="Assests/In Company/pic 12.png" alt="In Company"></a>
+              <a class="side-article-link" href="InCompany.html"><h2>Brands Under the Radar:<br><i>IN COMPANY</i> - Sculptural Glassware</h2></a>
+            </article>
+
+            <article class="side-article">
+              <a href="Nuumago.html"> <img src="Assests/Nuumago/Cover Nothing.png" alt="Nüumago"></a>
+              <a class="side-article-link" href="Nuumago.html"><h2>Brands Under the Radar:<br><i>NÜUMAGO</i> - Accessories, Reimagined</h2></a> <!-- Ü -->
+            </article>
+          </div>
+      </div>
+    </section>
+
+    <section class="articles">
+      <div class="articles-layout">
+        <div class="hori-article">
+          <article class="hori-article">
+            <a href="Nuumago.html"> <img src="Assests/Joshua/Background No Extras.png" alt="Nüumago"></a>
+            <a class="side-article-link" href="Nuumago.html"><h2>Local Sound Check:<br><i>JOSHUA FUTURA</i> - The Hood Fav</h2></a>
+          </article>
+
+          <article class="hori-article">
+            <a href="Nuumago.html"> <img src="Assests/TheOdd/Cover Back.png" alt="Nüumago"></a>
+            <a class="side-article-link" href="Nuumago.html"><h2>Brands Under the Radar:<br><i>THEODD</i> - Where Dysphoria Meets Design</h2></a>
+          </article>
+        </div>
+      </div>
+    </section>
+    
+    <section class="grid" id="grid" aria-live="polite"></section>
+  </main>
+  
+  <script>
+    // Utilities
+    const qs = s => document.querySelector(s);
+    const qsa = s => Array.from(document.querySelectorAll(s));
+
+    //Theme toggle
+    const themeBtn = qs('#themeToggle');
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) document.body.setAttribute('data-theme', savedTheme);
+    themeBtn.addEventListener('click', () => {
+      const next = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.body.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      themeBtn.setAttribute('aria-pressed', next === 'dark' ? 'true' : 'false');
+    }); 
+
+    // Reveal on scroll
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revealObserver.unobserve(e.target); }});
+    }, { threshold: .2 });
+
+    // State
+    let POSTS = [];
+    let current = { post: null, index: 0 };
+
+    // Build grid
+    function renderGrid() {
+      const grid = qs('#grid');
+      grid.innerHTML = '';
+      POSTS.forEach((post, i) => {
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.setAttribute('tabindex', '0');
+        card.innerHTML = `
+          <div class="thumb">
+            <img loading="lazy" src="${post.cover}" alt="${escapeHtml(post.title)}" />
+            <div class="badge">${post.slides.length} slides</div>
+          </div>
+          <div class="content">
+            <div class="tags">${post.tags.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join('')}</div>
+            <h3 class="h2">${escapeHtml(post.title)}</h3>
+            <div class="meta">
+              <span>${new Date(post.date).toLocaleDateString()}</span>
+              <div class="actions">
+                <button class="pill" data-open="${i}">Open</button>
+              </div>
+            </div>
+          </div>
+        `;
+        card.querySelector('[data-open]').addEventListener('click', () => openLightbox(i, 0));
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(i, 0); }
+        });
+        grid.appendChild(card);
+        revealObserver.observe(card);
+      });
+    }
+
+    // Lightbox
+    const lb = qs('#lightbox');
+    const slidesEl = qs('#slides');
+    const thumbsEl = qs('#thumbs');
+    const lbTitle = qs('#lbTitle');
+    const lbDesc = qs('#lbDesc');
+    const lbTags = qs('#lbTags');
+
+    function openLightbox(postIndex, slideIndex=0) {
+      current.post = POSTS[postIndex];
+      current.index = slideIndex;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      // Fill meta
+      lbTitle.textContent = current.post.title;
+      lbDesc.textContent = current.post.description || '';
+      lbTags.innerHTML = current.post.tags.map(t => `<span class="lb-tag">${escapeHtml(t)}</span>`).join('');
+      // Slides
+      slidesEl.innerHTML = current.post.slides.map(s => `
+        <figure>
+          <img src="${s.src}" alt="${escapeHtml(s.alt || current.post.title)}" />
+        </figure>
+      `).join('');
+      // Thumbs
+      thumbsEl.innerHTML = current.post.slides.map((s, i) => `
+        <button data-goto="${i}" aria-label="Go to slide ${i+1}">
+          <img src="${s.src}" alt="">
+        </button>
+      `).join('');
+      qsa('[data-goto]').forEach(btn => btn.addEventListener('click', e => goToSlide(parseInt(btn.dataset.goto, 10))));
+      updateSlide();
+    }
+
+    function closeLightbox() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function updateSlide() {
+      const n = current.index;
+      slidesEl.style.transform = `translateX(${-n * 100}%)`;
+      qsa('.thumbs button').forEach((b, i) => b.classList.toggle('active', i === n));
+    }
+
+    function nextSlide() {
+      current.index = (current.index + 1) % current.post.slides.length;
+      updateSlide();
+    }
+    function prevSlide() {
+      current.index = (current.index - 1 + current.post.slides.length) % current.post.slides.length;
+      updateSlide();
+    }
+    function goToSlide(i) { current.index = i; updateSlide(); }
+
+    qs('#nextSlide').addEventListener('click', nextSlide);
+    qs('#prevSlide').addEventListener('click', prevSlide);
+    qs('#closeLightbox').addEventListener('click', closeLightbox);
+    lb.addEventListener('click', (e) => { if (e.target === lb) closeLightbox(); });
+
+    // Keyboard & swipe
+    window.addEventListener('keydown', (e) => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+    let touchStartX = 0;
+    slidesEl.addEventListener('touchstart', e => touchStartX = e.touches[0].clientX, { passive: true });
+    slidesEl.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 40) dx < 0 ? nextSlide() : prevSlide();
+    });
+
+    // Parallax feel for any element with .parallax (optional)
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      qsa('.parallax').forEach(el => el.style.setProperty('--shift', Math.min(40, y * 0.06) + 'px'));
+    }, { passive: true });
+
+    // Escape HTML
+    function escapeHtml(s) { return s.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+
+    // Load data from inline JSON
+    function loadData() {
+      const raw = document.getElementById('data-posts')?.textContent || '[]';
+      const arr = JSON.parse(raw);
+      // sort newest first
+      POSTS = arr.sort((a,b) => new Date(b.date) - new Date(a.date));
+      renderGrid();
+    }
+    loadData();
+  </script>
+
+  <!-- Data: update this block with your posts -->
+  <script type="application/json" id="data-posts">
+  [
+  {
+    "title": "Who's Moving Us: <b><i>SUMAYYA VALLY</i></b> - Architect of Possibility",
+    "date": "2025-07-18",
+    "tags": ["Sumayya Vally", "Cordonia"],
+    "cover": "Assets/Cover.png",
+    "description": "Whats Moving Us: Sumayya Vally\nArchitect. Artist. Cultural amplifier.",
+    "slides": [
+      { "src": "Assets/Cover.png", "alt": "Cover image — Sumayya Vally feature" },
+      { "src": "Assets/Slide2.png", "alt": "Slide 2 — Sumayya Vally" },
+      { "src": "Assets/Slide3.png", "alt": "Slide 3 — Sumayya Vally" },
+      { "src": "Assets/Slide4.png", "alt": "Slide 4 — Sumayya Vally" },
+      { "src": "Assets/Slide5.png", "alt": "Slide 5 — Sumayya Vally" },
+      { "src": "Assets/Slide6.png", "alt": "Slide 6 — Sumayya Vally" },
+      { "src": "Assets/Slide7.png", "alt": "Slide 7 — Sumayya Vally" },
+      { "src": "Assets/Slide8.png", "alt": "Slide 8 — Sumayya Vally" },
+      { "src": "Assets/Slide9.png", "alt": "Slide 9 — Sumayya Vally" },
+      { "src": "Assets/Slide10.png", "alt": "Slide 10 — Sumayya Vally" }
+    ],
+    "fullCaption": "Sumayya Vally has shown us what it means to design with memory, community, and imagination at the centre. From Johannesburg to London, her work with Counterspace proves that architecture can be a stage for ritual, a platform for gathering, and a living archive for erased stories.\n\nShe’s a reminder that creativity doesn’t need to be bound to one medium, that beauty itself can be a form of resistance, and that every project, no matter the scale, can help us reimagine what’s possible.\n\nSumayya’s practice pushes us at Cordonia to do the same. To build with intention. To celebrate collective culture. To take up space with joy.\n\nWe’re taking notes.\n\nTap the post to explore her vision."
+  }
+]
+  </script>
+  
+</body>
+</html>
