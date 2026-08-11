@@ -252,3 +252,35 @@
     });
   });
 })();
+
+/* D40 Approach */
+
+(function () {
+  var steps = Array.prototype.slice.call(document.querySelectorAll('.approach-step'));
+  if (!steps.length) return;
+
+  function closeStep(step) {
+    step.classList.remove('is-open');
+    var btn = step.querySelector('.approach-step__toggle');
+    var detail = step.querySelector('.approach-step__detail');
+    if (btn) btn.setAttribute('aria-expanded', 'false');
+    if (detail) detail.setAttribute('aria-hidden', 'true');
+  }
+  function openStep(step) {
+    step.classList.add('is-open');
+    var btn = step.querySelector('.approach-step__toggle');
+    var detail = step.querySelector('.approach-step__detail');
+    if (btn) btn.setAttribute('aria-expanded', 'true');
+    if (detail) detail.setAttribute('aria-hidden', 'false');
+  }
+
+  steps.forEach(function (step) {
+    var btn = step.querySelector('.approach-step__toggle');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var wasOpen = step.classList.contains('is-open');
+      steps.forEach(closeStep); // accordion: one open at a time
+      if (!wasOpen) openStep(step);
+    });
+  });
+})();
