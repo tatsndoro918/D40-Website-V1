@@ -284,3 +284,31 @@
     });
   });
 })();
+
+/* Why Section */
+
+(function () {
+  var section = document.querySelector('.why');
+  if (!section) return;
+
+  var headline = section.querySelector('.headline');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    section.classList.add('in-view');
+    if (headline) headline.classList.add('reveal-in');
+    return;
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        section.classList.add('in-view');
+        if (headline) headline.classList.add('reveal-in');
+        observer.unobserve(section);
+      }
+    });
+  }, { threshold: 0.25 });
+
+  observer.observe(section);
+})();
