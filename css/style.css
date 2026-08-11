@@ -276,8 +276,7 @@
 .positioning__headline {
   margin: 0 0 16px;
   font: 600 44px/1.3 Playfair Display, sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
 }
 
 .positioning__copy {
@@ -340,11 +339,11 @@
   }
 }
 
-/* ===== Services ===== */
+/*  Services  */
 .services {
   max-width: 1300px;
   margin: 0 auto;
-  padding: 120px 20px 140px;
+  padding: 40px 20px 140px;
 }
 
 .services__intro {
@@ -354,19 +353,20 @@
 }
 .services__kicker {
   text-transform: uppercase;
-  font-size: 11px;
+  font-size: 18px;
   letter-spacing: 2px;
   color: var(--muted);
   margin: 0 0 14px;
 }
 .services__headline {
   margin: 0 0 16px;
-  font: 700 40px/1.15 "Playfair Display", serif;
+  font: 700 44px/1.3 "Playfair Display", serif;
+  letter-spacing: 1.8px;
 }
 .services__copy {
   margin: 0;
   color: var(--muted);
-  font-size: 16px;
+  font-size: 22px;
   line-height: 1.7;
 }
 
