@@ -220,3 +220,35 @@
 
   observer.observe(section);
 })();
+
+/* Service Cards */
+
+(function () {
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.service-card'));
+  if (!cards.length) return;
+
+  function closeCard(card) {
+    card.classList.remove('is-open');
+    var btn = card.querySelector('.service-card__toggle');
+    var detail = card.querySelector('.service-card__detail');
+    if (btn) btn.setAttribute('aria-expanded', 'false');
+    if (detail) detail.setAttribute('aria-hidden', 'true');
+  }
+  function openCard(card) {
+    card.classList.add('is-open');
+    var btn = card.querySelector('.service-card__toggle');
+    var detail = card.querySelector('.service-card__detail');
+    if (btn) btn.setAttribute('aria-expanded', 'true');
+    if (detail) detail.setAttribute('aria-hidden', 'false');
+  }
+
+  cards.forEach(function (card) {
+    var btn = card.querySelector('.service-card__toggle');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var wasOpen = card.classList.contains('is-open');
+      cards.forEach(closeCard);       // accordion: only one open at a time
+      if (!wasOpen) openCard(card);
+    });
+  });
+})();
