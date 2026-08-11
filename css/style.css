@@ -502,3 +502,118 @@
 @media (prefers-reduced-motion: reduce) {
   .service-card, .service-card__default, .service-card__preview { transition: none !important; }
 }
+
+/* The D40 Approach */
+.approach {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 120px 20px 140px;
+  border-top: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+}
+
+.approach__intro {
+  max-width: 640px;
+  margin: 0 auto 72px;
+  text-align: center;
+}
+.approach__kicker { text-transform: uppercase; font-size: 11px; letter-spacing: 2px; color: var(--muted); margin: 0 0 14px; }
+.approach__headline { margin: 0 0 16px; font: 700 40px/1.15 "Playfair Display", serif; }
+.approach__copy { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.7; }
+
+.approach__steps { position: relative; display: flex; flex-direction: column; }
+
+/* the vertical spine, echoing "every stage feeds the next" */
+.approach__steps::before {
+  content: "";
+  position: absolute;
+  top: 28px; bottom: 28px; left: 36px;
+  width: 1px;
+  background: color-mix(in srgb, var(--text) 12%, transparent);
+  z-index: 0;
+}
+
+.approach-step { position: relative; border-top: 1px solid color-mix(in srgb, var(--text) 10%, transparent); }
+.approach-step:last-child { border-bottom: 1px solid color-mix(in srgb, var(--text) 10%, transparent); }
+
+.approach-step__toggle {
+  all: unset;
+  box-sizing: border-box;
+  width: 100%;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 56px 1fr 22px;
+  align-items: center;
+  gap: 20px;
+  padding: 28px 8px;
+}
+.approach-step__toggle:focus-visible { outline: none; box-shadow: var(--ring); border-radius: 8px; }
+
+.approach-step__index {
+  position: relative;
+  z-index: 1;
+  background: var(--bg); /* masks the spine so it looks threaded behind the number, not through it */
+  font-size: 13px; font-weight: 600; letter-spacing: 1px; color: var(--accent);
+}
+
+.approach-step__heading { display: flex; flex-direction: column; gap: 6px; text-align: left; }
+.approach-step__label { font: 700 22px/1.3 "Playfair Display", serif; text-transform: uppercase; letter-spacing: .5px; }
+.approach-step__tagline { color: var(--muted); font-size: 15px; line-height: 1.5; }
+
+.approach-step__icon { position: relative; width: 22px; height: 22px; justify-self: end; transition: transform .35s ease; }
+.approach-step__icon::before, .approach-step__icon::after { content: ""; position: absolute; top: 50%; left: 50%; background: var(--text); }
+.approach-step__icon::before { width: 22px; height: 1px; transform: translate(-50%, -50%); }
+.approach-step__icon::after  { width: 1px; height: 22px; transform: translate(-50%, -50%); }
+.approach-step.is-open .approach-step__icon { transform: rotate(45deg); }
+
+.approach-step__detail {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .5s cubic-bezier(.22,.8,.2,1);
+}
+.approach-step.is-open .approach-step__detail { grid-template-rows: 1fr; }
+.approach-step__detail-inner { overflow: hidden; }
+
+.approach-step__desc {
+  margin: 0 0 16px;
+  padding: 0 8px 0 84px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.7;
+}
+.approach-step__list-label {
+  margin: 4px 0 12px;
+  padding: 0 8px 0 84px;
+  font-size: 13px; font-weight: 600; letter-spacing: .5px; text-transform: uppercase;
+}
+.approach-step__list {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0 8px 0 84px;
+  display: grid;
+  gap: 10px;
+}
+.approach-step__list li { font-size: 14px; padding-left: 20px; position: relative; color: var(--muted); }
+.approach-step__list li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+
+.approach-step__outcome {
+  margin: 8px 0 32px;
+  padding: 20px 8px 0 84px;
+  font-size: 15px;
+  line-height: 1.6;
+  border-top: 1px dashed color-mix(in srgb, var(--text) 16%, transparent);
+}
+.approach-step__outcome span { color: var(--accent); font-weight: 600; }
+
+.approach__close { max-width: 560px; margin: 72px auto 0; text-align: center; }
+.approach__close-line { margin: 0 0 10px; font: 700 22px/1.3 "Playfair Display", serif; }
+.approach__close-copy { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.7; }
+
+@media (max-width: 600px) {
+  .approach__steps::before { display: none; }
+  .approach-step__toggle { grid-template-columns: 40px 1fr 20px; gap: 12px; padding: 24px 8px; }
+  .approach-step__desc, .approach-step__list-label, .approach-step__list, .approach-step__outcome { padding-left: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .approach-step, .approach-step__detail, .approach-step__icon { transition: none !important; }
+}
