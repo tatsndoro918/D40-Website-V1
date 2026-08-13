@@ -5,7 +5,7 @@
   var htmlEl   = document.documentElement;
 
   // TODO: point this at your real star logo file (same one used in the demo).
-  var STAR_SRC = "Imgs/D40 Star White Trans.png";
+  var STAR_SRC = "../Imgs/Icons/D40 Star White Trans.png";
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
