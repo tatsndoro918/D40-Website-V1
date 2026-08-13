@@ -1,0 +1,51 @@
+/* 
+   D40 — COMMON / SHARED SCRIPTS
+   Load this on every page, alongside that page's own script
+   file (e.g. home.js, about.js). Each block below is self-
+   contained and checks for its own elements before running,
+   so it's harmless on a page that doesn't include them.
+    */
+
+/* Mouse-follow spotlight */
+(function () {
+  var light = document.getElementById('cursor-light');
+  if (!light) return;
+
+  var reduceMotion   = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hasFinePointer = window.matchMedia('(pointer: fine)').matches;
+  if (reduceMotion || !hasFinePointer) return; // no mouse, or motion is off — skip entirely
+
+  var HALF = 320; // half of #cursor-light's 640px size, for centering
+  var EASE = 0.08; // lower = lazier trail, higher = snappier tracking
+
+  var target  = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+  var current = { x: target.x, y: target.y };
+  var started = false;
+
+  function onMove(e) {
+    target.x = e.clientX;
+    target.y = e.clientY;
+    if (!started) {
+      started = true;
+      current.x = target.x;
+      current.y = target.y;
+      light.classList.add('active');
+    }
+  }
+
+  function tick() {
+    current.x += (target.x - current.x) * EASE;
+    current.y += (target.y - current.y) * EASE;
+    light.style.transform = 'translate3d(' + (current.x - HALF).toFixed(1) + 'px,' + (current.y - HALF).toFixed(1) + 'px,0)';
+    requestAnimationFrame(tick);
+  }
+
+  window.addEventListener('mousemove', onMove, { passive: true });
+  requestAnimationFrame(tick);
+})();
+
+/* Footer year */
+(function () {
+  var yearEl = document.getElementById('footer-year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+})();

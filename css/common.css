@@ -1,0 +1,173 @@
+/* 
+   D40 — COMMON / SHARED STYLES
+   Load this before each page's own stylesheet (e.g. home.css,
+   about.css). Contains only things every page uses: variables,
+   reset, header/nav, the headline line-reveal mechanism, the
+   cursor-follow spotlight, and the footer.
+   */
+
+:root {
+  --bg: #0c0c0d;
+  --surface: #131316;
+  --text: #ffffff;
+  --muted: #a9a9b3;
+  --accent: #d7b77a; /* warm editorial gold */
+  --card: #16161a;
+  --shadow: 0 10px 30px rgba(0,0,0,.25);
+  --radius: 14px;
+  --ring: 0 0 0 2px rgba(215,183,122,.2);
+}
+[data-theme="light"] {
+  --bg: #faf9f7;
+  --surface: #ffffff;
+  --text: #1b1b1b;
+  --muted: #5e5e66;
+  --accent: #3a4ad9; /* refined cobalt for light mode */
+  --card: #ffffff;
+  --shadow: 0 10px 30px rgba(0,0,0,.08);
+  --ring: 0 0 0 2px rgba(58,74,217,.12);
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: radial-gradient(1200px 600px at 70% -200px, rgba(215,183,122,.08), transparent 60%), var(--bg);
+  letter-spacing: 0.1px;
+}
+
+/* Header */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  backdrop-filter: blur(10px);
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
+}
+.nav {
+  max-width: 1700px; margin: 0 auto; padding: 14px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px;
+}
+.brand {
+  display: flex; align-items: baseline; gap: 10px;
+  text-decoration: none; color: var(--text);
+  margin-bottom: -40px;
+}
+.brand img {
+  margin-top: -10px;
+  height: 125px;
+  font: 700 60px/1 Playfair Display, serif;
+  letter-spacing: 1px;
+}
+.brand span {
+  transform: translateY(-30px);
+  margin-left: -5px;
+  font-size: 25px; color: var(--text); /* was: color:(--text) — invalid CSS, fixed */
+  text-transform: uppercase; letter-spacing: 2px;
+}
+.controls { display: flex; align-items: center; gap: 8px; }
+.btn {
+  border: 1px solid color-mix(in srgb, var(--text) 14%, transparent);
+  background: color-mix(in srgb, var(--card) 86%, transparent);
+  color: var(--text); text-decoration: none;
+  padding: 8px 12px; border-radius: 999px; cursor: pointer;
+  transition: transform .2s ease, background .2s ease, border-color .2s ease;
+  font-size: 14px;
+}
+.btn:hover { transform: translateY(-3px); }
+.btn:focus-visible { outline: none; box-shadow: var(--ring); }
+.toggle { display: inline-flex; align-items: center; gap: 8px; }
+
+.sub-nav { max-width: 1100px; margin: 0 auto; padding: 0 10px; }
+.sub-nav ul { list-style: none; margin: 0; padding: 10px 0; display: flex; gap: 34px; justify-content: center; }
+.sub-nav a { text-decoration: none; color: var(--text); font-weight: 500; transition: color .2s ease; }
+.sub-nav a:hover { color: var(--muted); }
+.sub-nav a[aria-current="page"] { color: var(--accent); }
+
+/* Headline line-reveal system
+   Used by the home hero, the About hero, and the Why section.
+   Add class="headline" to the heading and wrap each line in
+   <span class="line">; add class="reveal-in" via JS to trigger. */
+
+.headline .line {
+  display: block;
+  opacity: 0;
+  transform: translateY(14px);
+}
+.headline.reveal-in .line {
+  animation: line-fade-up .7s cubic-bezier(.22,.8,.2,1) forwards;
+}
+.headline.reveal-in .line:nth-child(1) { animation-delay: 0ms; }
+.headline.reveal-in .line:nth-child(2) { animation-delay: 150ms; }
+.headline.reveal-in .line:nth-child(3) { animation-delay: 300ms; }
+@keyframes line-fade-up { to { opacity: 1; transform: translateY(0); } }
+
+/* Mouse-follow spotlight */
+#cursor-light {
+  position: fixed;
+  top: 0; left: 0;
+  z-index: -1;
+  width: 640px;
+  height: 640px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, color-mix(in srgb, var(--text) 10%, transparent) 0%, transparent 70%);
+  filter: blur(60px);
+  opacity: 0;
+  transition: opacity .8s ease;
+  will-change: transform;
+}
+#cursor-light.active { opacity: 1; }
+
+/* Footer */
+.site-footer {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 80px 20px 40px;
+}
+.footer__top {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+}
+.footer__brand { display: flex; flex-direction: column; gap: 10px; }
+.footer__mark { height: 34px; width: auto; opacity: .9; }
+.footer__tagline { margin: 0; color: var(--muted); font-size: 14px; }
+.footer__col-label {
+  margin: 0 0 16px;
+  font-size: 11px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--muted);
+}
+.footer__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.footer__list a { color: var(--text); text-decoration: none; font-size: 14px; transition: color .2s ease; }
+.footer__list a:hover { color: var(--accent); }
+.footer__bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 16px; padding-top: 28px;
+}
+.footer__copy { margin: 0; color: var(--muted); font-size: 13px; }
+.footer__location { color: color-mix(in srgb, var(--muted) 70%, transparent); }
+.footer__social {
+  color: var(--text); text-decoration: none; font-size: 13px; font-weight: 600; letter-spacing: .3px;
+  border-bottom: 1px solid color-mix(in srgb, var(--text) 25%, transparent);
+  padding-bottom: 2px;
+  transition: color .2s ease, border-color .2s ease;
+}
+.footer__social:hover { color: var(--accent); border-color: var(--accent); }
+
+@media (max-width: 700px) {
+  .footer__top { grid-template-columns: 1fr; gap: 32px; }
+  .footer__bottom { flex-direction: column; align-items: flex-start; }
+}
+
+@media (prefers-reduced-motion: reduce), (pointer: coarse) {
+  #cursor-light { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .headline .line { opacity: 1; transform: none; animation: none !important; }
+  .btn { transition: none !important; }
+}
