@@ -1,0 +1,73 @@
+/* 
+   D40 — ABOUT PAGE STYLES
+   Load common.css BEFORE this file.
+    */
+
+.about-hero {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 64px 20px;
+  min-height: 80vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 60px;
+}
+
+.about-hero__kicker { text-transform: uppercase; font-size: 18px; letter-spacing: 2px; color: var(--muted); margin: 0 0 18px; }
+.about-hero__headline { margin: 0 0 24px; font: 700 44px/1.2 "Playfair Display", serif; }
+
+.about-hero__copy {
+  margin: 0;
+  max-width: 46ch;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.75;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .7s cubic-bezier(.22,.8,.2,1) .65s, transform .7s cubic-bezier(.22,.8,.2,1) .65s;
+}
+.about-hero.reveal-in .about-hero__copy { opacity: 1; transform: translateY(0); }
+
+.about-hero__mark { display: flex; justify-content: center; }
+
+/* The "materialize" effect: hidden behind a mask + blurred, then wiped
+   into view left-to-right while it snaps into focus. Not literal
+   stroke-by-stroke construction — that needs an SVG with separate
+   letterform paths, which this PNG doesn't have. */
+.about-hero__mark-img {
+  width: min(360px, 70%);
+  height: auto;
+  opacity: 0;
+  transform: scale(.97);
+  filter: blur(6px);
+  -webkit-mask-image: linear-gradient(90deg, #000 88%, transparent 100%);
+          mask-image: linear-gradient(90deg, #000 88%, transparent 100%);
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-size: 0% 100%;
+          mask-size: 0% 100%;
+}
+.about-hero.reveal-in .about-hero__mark-img {
+  animation: mark-construct 2s cubic-bezier(.22,.8,.2,1) .3s forwards;
+}
+@keyframes mark-construct {
+  0%   { opacity: 1; transform: scale(.97); filter: blur(6px); -webkit-mask-size: 0% 100%;   mask-size: 0% 100%; }
+  75%  { filter: blur(3px); }
+  100% { opacity: 1; transform: scale(1);   filter: blur(0);   -webkit-mask-size: 100% 100%; mask-size: 100% 100%; }
+}
+
+@media (max-width: 900px) {
+  .about-hero { grid-template-columns: 1fr; text-align: center; padding-top: 40px; }
+  .about-hero__copy { margin-left: auto; margin-right: auto; }
+  .about-hero__mark { order: -1; }
+  .about-hero__mark-img { width: min(240px, 60%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-hero__copy, .about-hero__mark-img {
+    transition: none !important; animation: none !important;
+    opacity: 1 !important; transform: none !important; filter: none !important;
+    -webkit-mask-image: none !important; mask-image: none !important;
+  }
+}
