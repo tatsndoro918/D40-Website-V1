@@ -14,14 +14,14 @@
   gap: 60px;
 }
 
-.about-hero__kicker { text-transform: uppercase; font-size: 18px; letter-spacing: 2px; color: var(--muted); margin: 0 0 18px; }
-.about-hero__headline { margin: 0 0 24px; font: 700 44px/1.2 "Playfair Display", serif; }
+.about-hero__kicker { text-transform: uppercase; font-size: 18px; letter-spacing: 2px; color: var(--muted); margin: 0 0 16px; }
+.about-hero__headline { margin: 0 0 24px; font: 700 48px/1.2 "Playfair Display", serif; }
 
 .about-hero__copy {
   margin: 0;
   max-width: 46ch;
   color: var(--muted);
-  font-size: 16px;
+  font-size: 22px;
   line-height: 1.75;
   opacity: 0;
   transform: translateY(14px);
