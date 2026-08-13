@@ -20,7 +20,9 @@
 
 </head>
 <body>
-    <div id="page-content">
+    <div id="cursor-light" aria-hidden="true"></div>
+
+      <div id="page-content">
 
         <header class="site-header" role="banner">
 
@@ -54,6 +56,30 @@
           </div>
     
         </header>
+        
+        <main class="about-hero">
+        <div class="about-hero__text">
+          <p class="about-hero__kicker">About D40</p>
+          <h1 class="headline about-hero__headline">
+            <span class="line">Built with ambition.</span>
+            <span class="line">Designed for what's next.</span>
+          </h1>
+          <p class="about-hero__copy">D40 is a digital growth agency built for businesses that refuse to stand still. We combine web development, search engine optimisation and digital strategy to create digital experiences that help ambitious businesses move forward.</p>
+        </div>
+        <div class="about-hero__mark">
+          <img src="../Imgs/Logos/D40 Monogram White Trans.png" alt="D40 monogram" class="about-hero__mark-img">
+        </div>
+      </main>
+ 
+    </div>
+ 
+    <noscript><style>
+      .headline .line, .about-hero__copy, .about-hero__mark-img {
+        opacity: 1 !important; transform: none !important; filter: none !important;
+        -webkit-mask-image: none !important; mask-image: none !important;
+      }
+    </style></noscript>
+
 
 
   <script src="../js/common.js" defer></script>
