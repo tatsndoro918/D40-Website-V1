@@ -22,3 +22,26 @@
     requestAnimationFrame(function () { requestAnimationFrame(reveal); });
   }
 })();
+
+/* Why D40 Exists — scroll reveal */
+(function () {
+  var section = document.querySelector('.why-exists');
+  if (!section) return;
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    section.classList.add('in-view');
+    return;
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        section.classList.add('in-view');
+        observer.unobserve(section);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  observer.observe(section);
+})();
