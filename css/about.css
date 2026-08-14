@@ -74,6 +74,7 @@
 
 /* Why D40 Exists */
 
+/*
 .why-exists {
   max-width: 900px;
   margin: -15px auto;
@@ -106,9 +107,9 @@
 .why-exists__payoff { margin: 0; font: 700 clamp(26px, 4vw, 38px)/1.3 Inter, serif; }
 .why-exists__brand { color: var(--text); }
 
-/* Reveal sequence: headline settles, then the setup, then the
+Reveal sequence: headline settles, then the setup, then the
    philosophy triplet cascades, then the explanation, then the
-   payoff lands last — same order the copy reads in. */
+   payoff lands last — same order the copy reads in. 
 .why-exists__setup .line,
 .why-exists__philosophy .line { display: block; }
 
@@ -152,4 +153,93 @@
   .why-exists__payoff {
     opacity: 1; transform: none; transition: none !important;
   }
+} */
+
+/* Pillars Section*/
+
+/* What D40 Actually Is (Build / Discover / Scale) */
+.pillars {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 120px 20px 0;
+  border-top: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+}
+
+.pillars__intro { max-width: 720px; margin: 0 auto 80px; text-align: center; }
+.pillars__kicker { text-transform: uppercase; font-size: 18px; letter-spacing: 2px; color: var(--muted); margin: 0 0 14px; }
+.pillars__headline { margin: 0 0 24px; font: 700 48px/1.15 "Playfair Display", serif; }
+.pillars__lead { margin: 0 0 18px; color: var(--muted); font-size: 18px; line-height: 1.8; }
+.pillars__lead:last-child { margin-bottom: 0; }
+
+.pillars__stack { display: flex; flex-direction: column; }
+.pillars__arrow { text-align: center; color: color-mix(in srgb, var(--text) 30%, transparent); font-size: 20px; padding: 4px 0; }
+
+.pillar { border-top: 1px solid color-mix(in srgb, var(--text) 10%, transparent); transition: opacity .5s ease; }
+.pillars__stack.has-active .pillar:not(.is-active) { opacity: .4; }
+
+.pillar__toggle {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  padding: 36px 8px;
+}
+.pillar__toggle:focus-visible { outline: none; box-shadow: inset var(--ring); border-radius: 8px; }
+
+.pillar__index { font-size: 22px; font-weight: 600; letter-spacing: 1px; color: var(--accent); }
+.pillar__name { font: 700 clamp(32px, 6vw, 58px)/1 "Playfair Display", serif; text-transform: uppercase; letter-spacing: 1px; }
+.pillar__tagline { margin-left: auto; color: var(--muted); font-size: 18px; text-align: right; max-width: 260px; }
+
+.pillar__detail {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .6s cubic-bezier(.22,.8,.2,1);
+}
+.pillar.is-active .pillar__detail { grid-template-rows: 1fr; }
+.pillar__detail-inner { overflow: hidden; }
+
+.pillar__lead-line { margin: 0 0 20px; padding: 0 8px; font: 600 20px/1.4 "Playfair Display", serif; }
+.pillar__desc { margin: 0 0 16px; padding: 0 8px; color: var(--muted); font-size: 15px; line-height: 1.75; max-width: 68ch; }
+.pillar__list-label { margin: 8px 0 14px; padding: 0 8px; font-size: 13px; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; }
+.pillar__list { list-style: none; margin: 0 0 24px; padding: 0 8px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 24px; }
+.pillar__list li { font-size: 14px; padding-left: 20px; position: relative; color: var(--muted); }
+.pillar__list li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+
+.pillar__objective {
+  margin: 0 0 40px;
+  padding: 20px 8px 0;
+  font-size: 15px;
+  line-height: 1.6;
+  border-top: 1px dashed color-mix(in srgb, var(--text) 16%, transparent);
+}
+.pillar__objective span { color: var(--accent); font-weight: 600; }
+
+@media (max-width: 700px) {
+  .pillar__toggle { flex-wrap: wrap; gap: 8px; padding: 28px 8px; }
+  .pillar__tagline { margin-left: 0; text-align: left; max-width: none; }
+  .pillar__list { grid-template-columns: 1fr; }
+}
+
+.pillars__connector { max-width: 900px; margin: 72px auto 0; text-align: center; padding: 0 20px; }
+.pillars__connector-text { margin: 0 0 20px; color: var(--muted); font-size: 22px; line-height: 1.8; }
+.pillars__connector-line { margin: 0; font: 700 26px/1.4 "Playfair Display", serif; }
+
+.pillars__bigger-idea {
+  max-width: 720px;
+  margin: 96px auto 0;
+  padding: 72px 20px 120px;
+  text-align: center;
+  border-top: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+}
+.pillars__bigger-kicker { text-transform: uppercase; font-size: 18px; letter-spacing: 2px; color: var(--muted); margin: 0 0 28px; }
+.pillars__bigger-statement { margin: 0 0 32px; }
+.pillars__bigger-statement .line { display: block; font: 400 24px/1.6 "Playfair Display", serif; color: var(--text); margin-bottom: 14px; }
+.pillars__bigger-close { margin: 0 0 25px; color: var(--muted); font-size: 22px; }
+.pillars__bigger-final { margin: 0; font: 700 clamp(28px, 4.5vw, 42px)/1.3 "Playfair Display", serif; color: var(--text); }
+
+.pillars__stack.static .pillar__detail { grid-template-rows: 1fr; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pillar, .pillar__detail { transition: none !important; }
 }
