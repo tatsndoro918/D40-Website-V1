@@ -101,3 +101,56 @@
     if (!stack.contains(e.relatedTarget)) { hovering = false; setActive(scrollActive); }
   });
 })();
+
+/* Our Philosophy — grid accordion + scroll-in reveal */
+(function () {
+  var section = document.querySelector('.philosophy');
+  if (!section) return;
+  var grid = document.getElementById('philosophyGrid');
+  var principles = Array.prototype.slice.call(section.querySelectorAll('.principle'));
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    section.classList.add('in-view');
+  } else {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          section.classList.add('in-view');
+          observer.unobserve(section);
+        }
+      });
+    }, { threshold: 0.15 });
+    observer.observe(section);
+  }
+
+  function closePrinciple(p) {
+    p.classList.remove('is-open');
+    var btn = p.querySelector('.principle__toggle');
+    var detail = p.querySelector('.principle__detail');
+    if (btn) btn.setAttribute('aria-expanded', 'false');
+    if (detail) detail.setAttribute('aria-hidden', 'true');
+  }
+  function openPrinciple(p) {
+    p.classList.add('is-open');
+    var btn = p.querySelector('.principle__toggle');
+    var detail = p.querySelector('.principle__detail');
+    if (btn) btn.setAttribute('aria-expanded', 'true');
+    if (detail) detail.setAttribute('aria-hidden', 'false');
+  }
+
+  principles.forEach(function (p) {
+    var btn = p.querySelector('.principle__toggle');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var wasOpen = p.classList.contains('is-open');
+      principles.forEach(closePrinciple);
+      grid.classList.remove('has-open');
+      if (!wasOpen) {
+        openPrinciple(p);
+        grid.classList.add('has-open');
+      }
+    });
+  });
+})();

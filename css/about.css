@@ -243,3 +243,115 @@ Reveal sequence: headline settles, then the setup, then the
 @media (prefers-reduced-motion: reduce) {
   .pillar, .pillar__detail { transition: none !important; }
 }
+
+/* ===== Our Philosophy ===== */
+.philosophy {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 120px 20px 140px;
+  border-top: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+}
+
+.philosophy__intro {
+  max-width: 680px;
+  margin: 0 auto 72px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .7s cubic-bezier(.22,.8,.2,1), transform .7s cubic-bezier(.22,.8,.2,1);
+}
+.philosophy.in-view .philosophy__intro { opacity: 1; transform: translateY(0); }
+
+.philosophy__kicker { text-transform: uppercase; font-size: 11px; letter-spacing: 2px; color: var(--muted); margin: 0 0 14px; }
+.philosophy__headline { margin: 0 0 20px; font: 700 40px/1.15 "Playfair Display", serif; }
+.philosophy__lead { margin: 0 0 14px; color: var(--muted); font-size: 16px; line-height: 1.75; }
+.philosophy__lead:last-child { margin-bottom: 0; }
+
+.philosophy__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.philosophy__grid.has-open .principle:not(.is-open) { opacity: .5; }
+
+.principle {
+  grid-column: span 1;
+  background: var(--card);
+  border: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .5s ease, transform .5s cubic-bezier(.22,.8,.2,1), border-color .3s ease;
+}
+.philosophy.in-view .principle { opacity: 1; transform: translateY(0); }
+.philosophy.in-view .principle:nth-child(1) { transition-delay: 0ms;   }
+.philosophy.in-view .principle:nth-child(2) { transition-delay: 70ms;  }
+.philosophy.in-view .principle:nth-child(3) { transition-delay: 140ms; }
+.philosophy.in-view .principle:nth-child(4) { transition-delay: 210ms; }
+.philosophy.in-view .principle:nth-child(5) { transition-delay: 280ms; }
+.philosophy.in-view .principle:nth-child(6) { transition-delay: 350ms; }
+.philosophy.in-view .principle:nth-child(7) { transition-delay: 420ms; }
+.philosophy.in-view .principle:nth-child(8) { transition-delay: 490ms; }
+
+.principle.is-open {
+  grid-column: 1 / -1;
+  border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+.principle__toggle {
+  all: unset;
+  box-sizing: border-box;
+  width: 100%;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 44px 1fr 22px;
+  align-items: start;
+  gap: 16px;
+  padding: 28px;
+}
+.principle__toggle:focus-visible { outline: none; box-shadow: inset var(--ring); }
+
+.principle__index { font-size: 13px; font-weight: 600; letter-spacing: 1px; color: var(--accent); }
+.principle__title { display: block; font: 700 19px/1.35 "Playfair Display", serif; margin-bottom: 8px; }
+.principle__hook { display: block; color: var(--muted); font-size: 14px; line-height: 1.6; }
+
+.principle__icon { position: relative; width: 20px; height: 20px; margin-top: 2px; transition: transform .35s ease; }
+.principle__icon::before, .principle__icon::after { content: ""; position: absolute; top: 50%; left: 50%; background: var(--text); }
+.principle__icon::before { width: 20px; height: 1px; transform: translate(-50%, -50%); }
+.principle__icon::after  { width: 1px; height: 20px; transform: translate(-50%, -50%); }
+.principle.is-open .principle__icon { transform: rotate(45deg); }
+
+.principle__detail {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .5s cubic-bezier(.22,.8,.2,1);
+}
+.principle.is-open .principle__detail { grid-template-rows: 1fr; }
+.principle__detail-inner { overflow: hidden; }
+
+.principle__desc { margin: 0 0 16px; padding: 0 28px; color: var(--muted); font-size: 15px; line-height: 1.75; max-width: 68ch; }
+.principle__desc:last-child { margin-bottom: 28px; }
+
+.principle__mantra {
+  margin: 4px 28px 20px;
+  padding: 12px 18px;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .5px;
+  color: var(--accent);
+  border: 1px dashed color-mix(in srgb, var(--accent) 40%, transparent);
+  border-radius: 999px;
+}
+
+.principle__fragments { list-style: none; margin: 0 0 16px; padding: 0 28px; display: grid; gap: 8px; }
+.principle__fragments li { font-size: 15px; color: var(--muted); padding-left: 20px; position: relative; }
+.principle__fragments li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+
+@media (max-width: 800px) {
+  .philosophy__grid { grid-template-columns: 1fr; }
+  .principle.is-open { grid-column: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .philosophy__intro, .principle, .principle__detail, .principle__icon { transition: none !important; }
+  .philosophy__intro, .principle { opacity: 1 !important; transform: none !important; }
+}
