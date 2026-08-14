@@ -244,7 +244,7 @@ Reveal sequence: headline settles, then the setup, then the
   .pillar, .pillar__detail { transition: none !important; }
 }
 
-/* ===== Our Philosophy ===== */
+/* Our Philosophy */
 .philosophy {
   max-width: 1200px;
   margin: 0 auto;
@@ -262,9 +262,9 @@ Reveal sequence: headline settles, then the setup, then the
 }
 .philosophy.in-view .philosophy__intro { opacity: 1; transform: translateY(0); }
 
-.philosophy__kicker { text-transform: uppercase; font-size: 11px; letter-spacing: 2px; color: var(--muted); margin: 0 0 14px; }
-.philosophy__headline { margin: 0 0 20px; font: 700 40px/1.15 "Playfair Display", serif; }
-.philosophy__lead { margin: 0 0 14px; color: var(--muted); font-size: 16px; line-height: 1.75; }
+.philosophy__kicker { text-transform: uppercase; font-size: 18px; letter-spacing: 2px; color: var(--muted); margin: 0 0 14px; }
+.philosophy__headline { margin: 0 0 20px; font: 700 44px/1.15 "Playfair Display", serif; }
+.philosophy__lead { margin: 0 0 14px; color: var(--muted); font-size: 22px; line-height: 1.75; }
 .philosophy__lead:last-child { margin-bottom: 0; }
 
 .philosophy__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
@@ -309,9 +309,11 @@ Reveal sequence: headline settles, then the setup, then the
 }
 .principle__toggle:focus-visible { outline: none; box-shadow: inset var(--ring); }
 
-.principle__index { font-size: 13px; font-weight: 600; letter-spacing: 1px; color: var(--accent); }
-.principle__title { display: block; font: 700 19px/1.35 "Playfair Display", serif; margin-bottom: 8px; }
-.principle__hook { display: block; color: var(--muted); font-size: 14px; line-height: 1.6; }
+.principle__index { font-size: 18px; font-weight: 600; letter-spacing: 1px; color: var(--accent); }
+
+.principle__heading { display: flex; flex-direction: column; gap: 8px; }
+.principle__title { font: 700 23px/1.35 "Playfair Display", serif; }
+.principle__hook { color: var(--muted); font-size: 18px; line-height: 1.6; }
 
 .principle__icon { position: relative; width: 20px; height: 20px; margin-top: 2px; transition: transform .35s ease; }
 .principle__icon::before, .principle__icon::after { content: ""; position: absolute; top: 50%; left: 50%; background: var(--text); }
@@ -327,14 +329,14 @@ Reveal sequence: headline settles, then the setup, then the
 .principle.is-open .principle__detail { grid-template-rows: 1fr; }
 .principle__detail-inner { overflow: hidden; }
 
-.principle__desc { margin: 0 0 16px; padding: 0 28px; color: var(--muted); font-size: 15px; line-height: 1.75; max-width: 68ch; }
+.principle__desc { margin: 0 0 16px; padding: 0 28px; color: var(--muted); font-size: 18px; line-height: 1.75; max-width: 68ch; }
 .principle__desc:last-child { margin-bottom: 28px; }
 
 .principle__mantra {
   margin: 4px 28px 20px;
   padding: 12px 18px;
   display: inline-block;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 600;
   letter-spacing: .5px;
   color: var(--accent);
