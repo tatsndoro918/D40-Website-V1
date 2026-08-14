@@ -199,17 +199,17 @@ Reveal sequence: headline settles, then the setup, then the
 .pillar.is-active .pillar__detail { grid-template-rows: 1fr; }
 .pillar__detail-inner { overflow: hidden; }
 
-.pillar__lead-line { margin: 0 0 20px; padding: 0 8px; font: 600 20px/1.4 "Playfair Display", serif; }
-.pillar__desc { margin: 0 0 16px; padding: 0 8px; color: var(--muted); font-size: 15px; line-height: 1.75; max-width: 68ch; }
-.pillar__list-label { margin: 8px 0 14px; padding: 0 8px; font-size: 13px; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; }
+.pillar__lead-line { margin: 0 0 20px; padding: 0 8px; font: 600 24px/1.4 "Playfair Display", serif; }
+.pillar__desc { margin: 0 0 25px; padding: 0 8px; color: var(--muted); font-size: 20px; line-height: 1.75; max-width: 68ch; }
+.pillar__list-label { margin: 8px 0 14px; padding: 0 8px; font-size: 18px; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; }
 .pillar__list { list-style: none; margin: 0 0 24px; padding: 0 8px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 24px; }
-.pillar__list li { font-size: 14px; padding-left: 20px; position: relative; color: var(--muted); }
-.pillar__list li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+.pillar__list li { font-size: 18px; padding-left: 20px; position: relative; color: var(--muted); }
+.pillar__list li::before { content: "— "; position: absolute; left: 0; color: var(--accent); }
 
 .pillar__objective {
   margin: 0 0 40px;
   padding: 20px 8px 0;
-  font-size: 15px;
+  font-size: 20px;
   line-height: 1.6;
   border-top: 1px dashed color-mix(in srgb, var(--text) 16%, transparent);
 }
