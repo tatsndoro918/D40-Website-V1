@@ -76,7 +76,7 @@
 
 .why-exists {
   max-width: 900px;
-  margin: 0 auto;
+  margin: -15px auto;
   padding: 120px 20px 140px;
   border-top: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
   text-align: center;
