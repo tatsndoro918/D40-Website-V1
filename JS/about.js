@@ -154,3 +154,35 @@
     });
   });
 })();
+
+/* Where We're Going — headline, body, then statement, in sequence */
+(function () {
+  var section = document.querySelector('.going');
+  if (!section) return;
+
+  var headline  = section.querySelector('.going__headline');
+  var statement = section.querySelector('.going__statement');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function reveal() {
+    section.classList.add('in-view');
+    if (headline) headline.classList.add('reveal-in');
+    if (statement) statement.classList.add('reveal-in');
+  }
+
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    reveal();
+    return;
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        reveal();
+        observer.unobserve(section);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  observer.observe(section);
+})();
