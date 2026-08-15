@@ -44,7 +44,30 @@
   requestAnimationFrame(tick);
 })();
 
-/* Footer year */
+/* CTA */
+(function () {
+  var section = document.querySelector('.final-cta');
+  if (!section) return;
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    section.classList.add('in-view');
+    return;
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        section.classList.add('in-view');
+        observer.unobserve(section);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  observer.observe(section);
+})();
+
+/* Footer */
 (function () {
   var yearEl = document.getElementById('footer-year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
