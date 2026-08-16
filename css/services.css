@@ -1,0 +1,99 @@
+/* 
+   D40 — SERVICES PAGE STYLES
+    */
+
+.services-hero {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 64px 20px;
+  min-height: 80vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 60px;
+}
+
+.services-hero__kicker { text-transform: uppercase; font-size: 11px; letter-spacing: 2px; color: var(--muted); margin: 0 0 18px; }
+.services-hero__headline { margin: 0 0 24px; font: 700 44px/1.2 "Playfair Display", serif; }
+
+.services-hero__copy {
+  margin: 0;
+  max-width: 46ch;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.75;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .7s cubic-bezier(.22,.8,.2,1) .65s, transform .7s cubic-bezier(.22,.8,.2,1) .65s;
+}
+.services-hero.reveal-in .services-hero__copy { opacity: 1; transform: translateY(0); }
+
+.services-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 36px;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .7s cubic-bezier(.22,.8,.2,1) .85s, transform .7s cubic-bezier(.22,.8,.2,1) .85s;
+}
+.services-hero.reveal-in .services-hero__actions { opacity: 1; transform: translateY(0); }
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 26px;
+  border: 1px solid color-mix(in srgb, var(--text) 22%, transparent);
+  border-radius: 999px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .2px;
+  transition: border-color .25s ease, background .25s ease, transform .25s ease;
+}
+.hero-cta:hover {
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  transform: translateY(-2px);
+}
+.hero-cta:focus-visible { outline: none; box-shadow: var(--ring); }
+.hero-cta__arrow { transition: transform .25s ease; }
+.hero-cta:hover .hero-cta__arrow { transform: translateX(3px); }
+
+.services-hero__mark { display: flex; justify-content: center; }
+
+.services-hero__mark-img {
+  width: min(320px, 65%);
+  height: auto;
+  display: block;
+  opacity: 0;
+  transform: scale(.92);
+  transition: opacity .8s cubic-bezier(.22,.8,.2,1) .3s, transform .8s cubic-bezier(.22,.8,.2,1) .3s;
+}
+.services-hero.reveal-in .services-hero__mark-img { opacity: 1; transform: scale(1); }
+
+/* Continuous slow rotation — linear timing (constant mechanical speed,
+   not the eased "breathing" motion Home/About use) so this reads as
+   "always running," distinct from either of those two treatments. */
+.services-hero__mark-spin { animation: mark-orbit 48s linear infinite; }
+@keyframes mark-orbit {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@media (max-width: 900px) {
+  .services-hero { grid-template-columns: 1fr; text-align: center; padding-top: 40px; }
+  .services-hero__copy { margin-left: auto; margin-right: auto; }
+  .services-hero__actions { justify-content: center; }
+  .services-hero__mark { order: -1; }
+  .services-hero__mark-img { width: min(220px, 55%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .services-hero__copy, .services-hero__actions, .services-hero__mark-img {
+    transition: none !important; opacity: 1 !important; transform: none !important;
+  }
+  .services-hero__mark-spin { animation: none !important; }
+}
