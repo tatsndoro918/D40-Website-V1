@@ -13,14 +13,14 @@
   gap: 60px;
 }
 
-.services-hero__kicker { text-transform: uppercase; font-size: 11px; letter-spacing: 2px; color: var(--muted); margin: 0 0 18px; }
+.services-hero__kicker { text-transform: uppercase; font-size: 18px; letter-spacing: 2px; color: var(--muted); margin: 0 0 18px; }
 .services-hero__headline { margin: 0 0 24px; font: 700 44px/1.2 "Playfair Display", serif; }
 
 .services-hero__copy {
   margin: 0;
   max-width: 46ch;
   color: var(--muted);
-  font-size: 16px;
+  font-size: 22px;
   line-height: 1.75;
   opacity: 0;
   transform: translateY(14px);
@@ -96,4 +96,109 @@
     transition: none !important; opacity: 1 !important; transform: none !important;
   }
   .services-hero__mark-spin { animation: none !important; }
+}
+
+/* Our Two Growth Engines */
+.engines {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 90px 20px 140px;
+  border-top: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+}
+
+.engines__intro { max-width: 680px; margin: 0 auto 80px; text-align: center; }
+.engines__kicker { text-transform: uppercase; font-size: 18px; letter-spacing: 2px; color: var(--muted); margin: 0 0 14px; }
+.engines__headline { margin: 0 0 20px; font: 700 48px/1.2 "Playfair Display", serif; }
+.engines__body { margin: 0; color: var(--muted); font-size: 20px; line-height: 1.75; }
+
+.engines__columns { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+
+.engine { position: relative; padding-bottom: 44px; }
+.engine__index { margin: 0 0 10px; font-size: 18px; font-weight: 600; letter-spacing: 1px; color: var(--accent); }
+.engine__tagline { margin: 0 0 18px; font: 700 34px/1.2 "Playfair Display", serif; text-transform: uppercase; }
+.engine__desc { margin: 0; color: var(--muted); font-size: 18px; line-height: 1.75; max-width: 46ch; }
+
+.engine__flow { margin: 24px 0 0; font-size: 18px; font-weight: 600; letter-spacing: .2px; line-height: 2.1; }
+.engine__flow-arrow { color: var(--accent); margin: 0 6px; }
+
+.engine__link {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 24px;
+  color: var(--text); text-decoration: none;
+  font-size: 18px; font-weight: 600;
+  border-bottom: 1px solid color-mix(in srgb, var(--text) 25%, transparent);
+  padding-bottom: 2px;
+  transition: color .2s ease, border-color .2s ease, transform .2s ease;
+}
+.engine__link:hover { color: var(--accent); border-color: var(--accent); transform: translateY(2px); }
+.engine__link:focus-visible { outline: none; box-shadow: var(--ring); border-radius: 2px; }
+
+/* The convergence beams — anchored at each column's outer edge, tilting
+   inward to point toward a shared spot below both columns. */
+.engine::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  width: 58%;
+  transition: transform .9s cubic-bezier(.22,.8,.2,1);
+}
+.engine--seo::after { left: 0; transform-origin: left bottom; background: linear-gradient(90deg, transparent, var(--accent)); }
+.engine--web::after { right: 0; transform-origin: right bottom; background: linear-gradient(270deg, transparent, var(--accent)); }
+
+.engines__growth {
+  text-align: center;
+  margin-top: 56px;
+  opacity: 0;
+  transform: scale(.85);
+  transition: opacity .8s cubic-bezier(.22,.8,.2,1) 1700ms, transform .8s cubic-bezier(.22,.8,.2,1) 1700ms;
+}
+.engines.in-view .engines__growth { opacity: 1; transform: scale(1); }
+
+.engines__growth-text {
+  display: inline-block;
+  font: 700 clamp(56px, 10vw, 140px)/1 "Playfair Display", serif;
+  letter-spacing: 2px;
+  color: var(--accent); /* fallback if gradient text isn't supported */
+  background: linear-gradient(90deg, var(--text), var(--accent));
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Reveal sequence: body copy, then each column, then — after both have
+   settled — the beams sweep inward and GROWTH blooms underneath. */
+.engines__body,
+.engine--seo,
+.engine--web {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .7s cubic-bezier(.22,.8,.2,1), transform .7s cubic-bezier(.22,.8,.2,1);
+}
+.engines.in-view .engines__body,
+.engines.in-view .engine--seo,
+.engines.in-view .engine--web {
+  opacity: 1;
+  transform: translateY(0);
+}
+.engines.in-view .engines__body { transition-delay: 250ms; }
+.engines.in-view .engine--seo   { transition-delay: 450ms; }
+.engines.in-view .engine--web   { transition-delay: 600ms; }
+.engines.in-view .engine--seo::after { transform: rotate(10deg);  transition-delay: 1350ms; }
+.engines.in-view .engine--web::after { transform: rotate(-10deg); transition-delay: 1350ms; }
+
+@media (max-width: 900px) {
+  .engines__columns { grid-template-columns: 1fr; gap: 64px; }
+  .engine { padding-bottom: 0; }
+  .engine::after { display: none; } /* the tilt-toward-center metaphor only holds side-by-side */
+  .engines__growth { margin-top: 40px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .engines__body, .engine--seo, .engine--web, .engines__growth, .engine::after {
+    transition: none !important;
+  }
+  .engines__body, .engine--seo, .engine--web, .engines__growth {
+    opacity: 1 !important; transform: none !important;
+  }
 }

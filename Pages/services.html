@@ -76,6 +76,59 @@
         </div>
       </main>
 
+      <section class="engines" id="engines">
+        <div class="engines__intro">
+          <p class="engines__kicker">Our Two Growth Engines</p>
+          <h2 class="headline engines__headline">
+            <span class="line">Two disciplines.</span>
+            <span class="line">One objective.</span>
+          </h2>
+          <p class="engines__body">Your digital presence has two fundamental jobs: be found and perform when people arrive. D40 focuses on both.</p>
+        </div>
+
+        <div class="engines__stage">
+          <div class="engines__columns">
+
+            <article class="engine engine--seo">
+              <p class="engine__index">01 — SEO</p>
+              <h3 class="engine__tagline">Be found.</h3>
+              <p class="engine__desc">SEO is more than ranking for keywords. It's about creating a sustainable source of qualified visibility and turning search demand into opportunities for your business.</p>
+              <p class="engine__flow">
+                <span>Technical foundations</span>
+                <span class="engine__flow-arrow" aria-hidden="true">→</span>
+                <span>Search visibility</span>
+                <span class="engine__flow-arrow" aria-hidden="true">→</span>
+                <span>Qualified traffic</span>
+                <span class="engine__flow-arrow" aria-hidden="true">→</span>
+                <span>Leads</span>
+              </p>
+              <a class="engine__link" href="#seo">Explore SEO <span aria-hidden="true">↓</span></a>
+            </article>
+
+            <article class="engine engine--web">
+              <p class="engine__index">02 — Web Development</p>
+              <h3 class="engine__tagline">Perform.</h3>
+              <p class="engine__desc">Your website is where attention becomes action. We build fast, modern and conversion-focused digital experiences designed to represent your brand and turn visitors into customers.</p>
+              <p class="engine__flow">
+                <span>Strategy</span>
+                <span class="engine__flow-arrow" aria-hidden="true">→</span>
+                <span>Design</span>
+                <span class="engine__flow-arrow" aria-hidden="true">→</span>
+                <span>Development</span>
+                <span class="engine__flow-arrow" aria-hidden="true">→</span>
+                <span>Conversion</span>
+              </p>
+              <a class="engine__link" href="#web-development">Explore Web Development <span aria-hidden="true">↓</span></a>
+            </article>
+
+          </div>
+
+          <div class="engines__growth">
+            <span class="engines__growth-text">GROWTH</span>
+          </div>
+        </div>
+      </section>
+
       <footer class="site-footer" role="contentinfo">
       <div class="footer__top">
         <div class="footer__brand">
@@ -111,9 +164,11 @@
     </div>
 
     <noscript><style>
-      .headline .line, .services-hero__copy, .services-hero__actions, .services-hero__mark-img {
+      .headline .line, .services-hero__copy, .services-hero__actions, .services-hero__mark-img,
+      .engines__body, .engine--seo, .engine--web, .engines__growth {
         opacity: 1 !important; transform: none !important;
       }
+      .engine::after { transform: none !important; }
     </style></noscript>
 
     <script src="../JS/common.js"></script>
