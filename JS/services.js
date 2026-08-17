@@ -163,3 +163,80 @@
 
   observer.observe(section);
 })();
+
+/* Which Package Is Right For You? — business-type selector */
+(function () {
+  var section = document.getElementById('finder');
+  if (!section) return;
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    section.classList.add('in-view');
+  } else {
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          section.classList.add('in-view');
+          revealObserver.unobserve(section);
+        }
+      });
+    }, { threshold: 0.2 });
+    revealObserver.observe(section);
+  }
+
+  var options = Array.prototype.slice.call(section.querySelectorAll('.finder__option'));
+  var result  = document.getElementById('finderResult');
+  var combo   = document.getElementById('finderCombo');
+  var webLink = document.getElementById('finderWebLink');
+  var seoLink = document.getElementById('finderSeoLink');
+
+  var RECOMMENDATIONS = {
+    local:       { web: 'Web Base',    seo: 'SEO Base',    webId: 'plan-web-base',    seoId: 'plan-seo-base' },
+    growing:     { web: 'Web Growth',  seo: 'SEO Growth',  webId: 'plan-web-growth',  seoId: 'plan-seo-growth' },
+    established: { web: 'Web Premium', seo: 'SEO Premium', webId: 'plan-web-premium', seoId: 'plan-seo-premium' }
+  };
+
+  function highlightPlan(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.classList.remove('plan--pulse');
+    void el.offsetWidth; // force reflow so the animation restarts if the same card is targeted twice in a row
+    el.classList.add('plan--pulse');
+    el.addEventListener('animationend', function handler() {
+      el.classList.remove('plan--pulse'); // lets a featured card's own ambient glow resume cleanly
+      el.removeEventListener('animationend', handler);
+    });
+  }
+
+  options.forEach(function (opt) {
+    opt.addEventListener('click', function () {
+      options.forEach(function (o) { o.setAttribute('aria-pressed', 'false'); });
+      opt.setAttribute('aria-pressed', 'true');
+
+      var rec = RECOMMENDATIONS[opt.getAttribute('data-recommend')];
+      if (!rec || !combo || !webLink || !seoLink) return;
+
+      combo.textContent = rec.web + ' + ' + rec.seo;
+      webLink.href = '#' + rec.webId;
+      webLink.innerHTML = 'View ' + rec.web + ' <span aria-hidden="true">→</span>';
+      seoLink.href = '#' + rec.seoId;
+      seoLink.innerHTML = 'View ' + rec.seo + ' <span aria-hidden="true">→</span>';
+
+      if (result) result.classList.add('is-visible');
+    });
+  });
+
+  if (result) {
+    result.addEventListener('click', function (e) {
+      var link = e.target.closest ? e.target.closest('.finder__result-link') : null;
+      if (!link) return;
+      var id = link.getAttribute('href').slice(1);
+      var target = document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      highlightPlan(id);
+    });
+  }
+})();

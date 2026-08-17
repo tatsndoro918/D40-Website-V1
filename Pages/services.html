@@ -143,7 +143,7 @@
 
         <div class="plans">
 
-          <article class="plan">
+          <article class="plan" id="plan-seo-base">
             <div class="plan__header">
               <h3 class="plan__name">SEO Base</h3>
               <p class="plan__price">R12,000<span class="plan__price-sep">–</span>R15,000<span class="plan__price-unit">/ month</span></p>
@@ -167,7 +167,7 @@
             <a class="plan__cta" href="https://instagram.com/godhasdonia" target="_blank" rel="noopener">Choose SEO Base <span aria-hidden="true">→</span></a>
           </article>
 
-          <article class="plan plan--featured">
+          <article class="plan plan--featured" id="plan-seo-growth">
             <p class="plan__badge">Recommended</p>
             <div class="plan__header">
               <h3 class="plan__name">SEO Growth</h3>
@@ -190,7 +190,7 @@
             <a class="plan__cta plan__cta--solid" href="https://instagram.com/godhasdonia" target="_blank" rel="noopener">Choose SEO Growth <span aria-hidden="true">→</span></a>
           </article>
 
-          <article class="plan">
+          <article class="plan" id="plan-seo-premium">
             <div class="plan__header">
               <h3 class="plan__name">SEO Premium</h3>
               <p class="plan__price">R45,000<span class="plan__price-sep">–</span>R65,000<span class="plan__price-unit">/ month</span></p>
@@ -229,7 +229,7 @@
 
         <div class="plans">
 
-          <article class="plan">
+          <article class="plan" id="plan-web-base">
             <div class="plan__header">
               <h3 class="plan__name">Web Base</h3>
               <div class="plan__price-group">
@@ -257,7 +257,7 @@
             <a class="plan__cta" href="https://instagram.com/godhasdonia" target="_blank" rel="noopener">Choose Web Base <span aria-hidden="true">→</span></a>
           </article>
 
-          <article class="plan plan--featured">
+          <article class="plan plan--featured" id="plan-web-growth">
             <p class="plan__badge">Recommended</p>
             <div class="plan__header">
               <h3 class="plan__name">Web Growth</h3>
@@ -286,7 +286,7 @@
             <a class="plan__cta plan__cta--solid" href="https://instagram.com/godhasdonia" target="_blank" rel="noopener">Choose Web Growth <span aria-hidden="true">→</span></a>
           </article>
 
-          <article class="plan">
+          <article class="plan" id="plan-web-premium">
             <div class="plan__header">
               <h3 class="plan__name">Web Premium</h3>
               <div class="plan__price-group">
@@ -386,6 +386,40 @@
         </div>
       </section> -->
 
+      <section class="finder" id="finder">
+        <div class="finder__intro">
+          <p class="finder__kicker">Which Package Is Right For You?</p>
+          <h2 class="finder__headline">I'm a...</h2>
+        </div>
+
+        <div class="finder__options">
+          <button class="finder__option" type="button" aria-pressed="false" data-recommend="local">
+            <span class="finder__option-name">Local / Small Business</span>
+            <span class="finder__option-desc">I need a professional website and stronger local visibility.</span>
+          </button>
+          <button class="finder__option" type="button" aria-pressed="false" data-recommend="growing">
+            <span class="finder__option-name">Growing Business</span>
+            <span class="finder__option-desc">I'm getting customers online and want to increase leads.</span>
+          </button>
+          <button class="finder__option" type="button" aria-pressed="false" data-recommend="established">
+            <span class="finder__option-name">Established Business</span>
+            <span class="finder__option-desc">Digital is already important to our revenue and we're ready to scale.</span>
+          </button>
+        </div>
+
+        <div class="finder__result" id="finderResult" aria-live="polite">
+          <div class="finder__result-inner">
+            <p class="finder__result-label">A starting point for you</p>
+            <p class="finder__result-combo" id="finderCombo"></p>
+            <div class="finder__result-links">
+              <a class="finder__result-link" id="finderWebLink" href="#">View package <span aria-hidden="true">→</span></a>
+              <a class="finder__result-link" id="finderSeoLink" href="#">View package <span aria-hidden="true">→</span></a>
+            </div>
+            <p class="finder__disclaimer">This is a starting recommendation, not a fixed rule, every package can be mixed, matched or adjusted to fit your business.</p>
+          </div>
+        </div>
+      </section>
+
       <footer class="site-footer" role="contentinfo">
       <div class="footer__top">
         <div class="footer__brand">
@@ -426,7 +460,8 @@
       .seo-detail__intro, .seo-detail__statement, .seo-detail__retainer, .plan,
       .section-break, .web-detail__intro, .web-detail__statement,
       .tiers__intro, .tier-step__bar, .tier-step__copy, .tiers__addon,
-      .synergy__intro, .synergy__statement, .flow__track, .flow__node, .synergy__cta {
+      .synergy__intro, .synergy__statement, .flow__track, .flow__node, .synergy__cta,
+      .finder__intro, .finder__options {
         opacity: 1 !important; transform: none !important; clip-path: none !important;
       }
       .engine::after { transform: none !important; }

@@ -649,3 +649,128 @@
   }
   .flow__track { transform: scaleY(1) !important; }
 }
+
+/* Which Package Is Right For You? */
+.finder {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 120px 20px 140px;
+  border-top: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+}
+
+.finder__intro,
+.finder__options {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .7s cubic-bezier(.22,.8,.2,1), transform .7s cubic-bezier(.22,.8,.2,1);
+}
+.finder.in-view .finder__intro,
+.finder.in-view .finder__options {
+  opacity: 1;
+  transform: translateY(0);
+}
+.finder.in-view .finder__options { transition-delay: 150ms; }
+
+.finder__intro { max-width: 600px; margin: 0 auto 48px; text-align: center; }
+.finder__kicker { text-transform: uppercase; font-size: 18px; letter-spacing: 2px; color: var(--muted); margin: 0 0 14px; }
+.finder__headline { margin: 0; font: 700 44px/1.3 "Playfair Display", serif; }
+
+.finder__options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+.finder__option {
+  all: unset;
+  box-sizing: border-box;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 28px 44px 28px 24px;
+  background: var(--card);
+  border: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+  border-radius: var(--radius);
+  transition: border-color .25s ease, background .25s ease, transform .25s ease;
+}
+.finder__option:hover { transform: translateY(-3px); }
+.finder__option:focus-visible { outline: none; box-shadow: var(--ring); }
+
+.finder__option::after {
+  content: "";
+  position: absolute;
+  top: 24px; right: 20px;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  border: 2px solid color-mix(in srgb, var(--text) 25%, transparent);
+  transition: border-color .25s ease, background .25s ease;
+}
+.finder__option[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 10%, var(--card));
+}
+.finder__option[aria-pressed="true"]::after {
+  border-color: var(--accent);
+  background: var(--accent);
+  box-shadow: inset 0 0 0 3px var(--card);
+}
+
+.finder__option-name { font: 700 23px/1.3 "Playfair Display", serif; }
+.finder__option-desc { color: var(--muted); font-size: 18px; line-height: 1.6; }
+
+.finder__result {
+  margin-top: 8px;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .6s cubic-bezier(.22,.8,.2,1);
+}
+.finder__result.is-visible { grid-template-rows: 1fr; }
+.finder__result-inner { overflow: hidden; }
+
+.finder__result-label { margin: 32px 0 8px; font-size: 16px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
+.finder__result-combo { margin: 0 0 20px; font: 700 clamp(22px, 3.5vw, 30px)/1.3 "Playfair Display", serif; color: var(--accent); }
+
+.finder__result-links { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 24px; }
+.finder__result-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 20px;
+  border: 1px solid color-mix(in srgb, var(--text) 22%, transparent);
+  border-radius: 999px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  transition: border-color .2s ease, background .2s ease, transform .2s ease;
+}
+.finder__result-link:hover { border-color: color-mix(in srgb, var(--accent) 55%, transparent); background: color-mix(in srgb, var(--accent) 10%, transparent); transform: translateY(-2px); }
+.finder__result-link:focus-visible { outline: none; box-shadow: var(--ring); }
+
+.finder__disclaimer {
+  margin: 0;
+  padding-top: 20px;
+  border-top: 1px dashed color-mix(in srgb, var(--text) 16%, transparent);
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Highlight ping for a pricing card jumped to from the finder above.
+   Compound selector (.plan.plan--pulse) so this always outranks
+   .plan--featured's own animation, regardless of source order. */
+@keyframes plan-pulse {
+  0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent), var(--shadow); }
+  60%  { box-shadow: 0 0 0 14px color-mix(in srgb, var(--accent) 0%, transparent), var(--shadow); }
+  100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 0%, transparent), var(--shadow); }
+}
+.plan.plan--pulse { animation: plan-pulse 1s ease-out 2; }
+.plan { scroll-margin-top: 160px; } /* clears the sticky header if a browser ever does a native (non-JS) anchor jump */
+
+@media (max-width: 700px) {
+  .finder__options { grid-template-columns: 1fr; }
+  .finder__result-links { flex-direction: column; align-items: stretch; }
+  .finder__result-link { justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .finder__intro, .finder__options, .finder__option, .plan--pulse { transition: none !important; animation: none !important; }
+  .finder__intro, .finder__options { opacity: 1 !important; transform: none !important; }
+  .finder__result.is-visible { grid-template-rows: 1fr; }
+}
