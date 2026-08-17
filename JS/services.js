@@ -71,3 +71,49 @@
 
   observer.observe(section);
 })();
+
+/* Section break — doors-opening wipe */
+(function () {
+  var brk = document.querySelector('.section-break');
+  if (!brk) return;
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    brk.classList.add('in-view');
+    return;
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        brk.classList.add('in-view');
+        observer.unobserve(brk);
+      }
+    });
+  }, { threshold: 0.4 });
+
+  observer.observe(brk);
+})();
+
+/* Web Development deep dive + pricing — scroll reveal */
+(function () {
+  var section = document.querySelector('.web-detail');
+  if (!section) return;
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    section.classList.add('in-view');
+    return;
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        section.classList.add('in-view');
+        observer.unobserve(section);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  observer.observe(section);
+})();
