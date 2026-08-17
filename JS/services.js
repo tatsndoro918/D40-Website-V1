@@ -240,3 +240,34 @@
     });
   }
 })();
+
+/* FAQ — accordion */
+(function () {
+  var items = Array.prototype.slice.call(document.querySelectorAll('.faq-item'));
+  if (!items.length) return;
+
+  function closeItem(item) {
+    item.classList.remove('is-open');
+    var btn = item.querySelector('.faq-item__toggle');
+    var detail = item.querySelector('.faq-item__detail');
+    if (btn) btn.setAttribute('aria-expanded', 'false');
+    if (detail) detail.setAttribute('aria-hidden', 'true');
+  }
+  function openItem(item) {
+    item.classList.add('is-open');
+    var btn = item.querySelector('.faq-item__toggle');
+    var detail = item.querySelector('.faq-item__detail');
+    if (btn) btn.setAttribute('aria-expanded', 'true');
+    if (detail) detail.setAttribute('aria-hidden', 'false');
+  }
+
+  items.forEach(function (item) {
+    var btn = item.querySelector('.faq-item__toggle');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var wasOpen = item.classList.contains('is-open');
+      items.forEach(closeItem);
+      if (!wasOpen) openItem(item);
+    });
+  });
+})();
