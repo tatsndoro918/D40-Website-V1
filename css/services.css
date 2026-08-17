@@ -421,3 +421,98 @@
     transition: none !important; opacity: 1 !important; transform: none !important;
   }
 }
+
+/* Why We Package Our Services */
+.tiers {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 120px 20px 140px;
+  border-top: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+}
+
+.tiers__intro {
+  max-width: 640px;
+  margin: 0 auto 88px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .7s cubic-bezier(.22,.8,.2,1), transform .7s cubic-bezier(.22,.8,.2,1);
+}
+.tiers.in-view .tiers__intro { opacity: 1; transform: translateY(0); }
+
+.tiers__kicker { text-transform: uppercase; font-size: 18px; letter-spacing: 2px; color: var(--muted); margin: 0 0 14px; }
+.tiers__headline { margin: 0 0 20px; font: 700 40px/1.35 "Playfair Display", serif; }
+.tiers__body { margin: 0; color: var(--muted); font-size: 20px; line-height: 1.8; }
+
+.tiers__staircase {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.tier-step__bar-wrap {
+  height: 120px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  border-bottom: 1px solid color-mix(in srgb, var(--text) 14%, transparent); /* shared ground line */
+  margin-bottom: 28px;
+}
+.tier-step__bar {
+  width: 64px;
+  border-radius: 6px 6px 0 0;
+  background: color-mix(in srgb, var(--text) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--text) 16%, transparent);
+  border-bottom: none;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform .8s cubic-bezier(.22,.8,.2,1);
+}
+.tier-step--base .tier-step__bar    { height: 38%; }
+.tier-step--growth .tier-step__bar  { height: 68%; background: color-mix(in srgb, var(--accent) 16%, transparent); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+.tier-step--premium .tier-step__bar { height: 100%; }
+
+.tiers.in-view .tier-step--base .tier-step__bar    { transform: scaleY(1); transition-delay: 200ms; }
+.tiers.in-view .tier-step--growth .tier-step__bar  { transform: scaleY(1); transition-delay: 400ms; }
+.tiers.in-view .tier-step--premium .tier-step__bar { transform: scaleY(1); transition-delay: 600ms; }
+
+.tier-step__copy {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .6s ease, transform .6s cubic-bezier(.22,.8,.2,1);
+}
+.tiers.in-view .tier-step--base .tier-step__copy    { opacity: 1; transform: none; transition-delay: 500ms; }
+.tiers.in-view .tier-step--growth .tier-step__copy  { opacity: 1; transform: none; transition-delay: 700ms; }
+.tiers.in-view .tier-step--premium .tier-step__copy { opacity: 1; transform: none; transition-delay: 900ms; }
+
+.tier-step__name { margin: 0 0 6px; font: 700 28px/1.3 "Playfair Display", serif; }
+.tier-step__verb { margin: 0 0 14px; font-size: 16px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); }
+.tier-step__audience { margin: 0 auto; max-width: 24ch; color: var(--muted); font-size: 18px; line-height: 1.6; }
+
+.tiers__addon {
+  max-width: 620px;
+  margin: 72px auto 0;
+  padding-top: 24px;
+  border-top: 1px dashed color-mix(in srgb, var(--text) 16%, transparent);
+  text-align: center;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.7;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity .6s ease 1100ms, transform .6s cubic-bezier(.22,.8,.2,1) 1100ms;
+}
+.tiers.in-view .tiers__addon { opacity: 1; transform: none; }
+.tiers__addon span { color: var(--accent); font-weight: 600; }
+
+@media (max-width: 700px) {
+  .tiers__staircase { grid-template-columns: 1fr; gap: 56px; }
+  .tier-step__bar-wrap { height: 80px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tiers__intro, .tier-step__bar, .tier-step__copy, .tiers__addon { transition: none !important; }
+  .tiers__intro, .tier-step__copy, .tiers__addon { opacity: 1 !important; transform: none !important; }
+  .tier-step__bar { transform: scaleY(1) !important; }
+}
