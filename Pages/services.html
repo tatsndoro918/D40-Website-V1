@@ -20,37 +20,37 @@
     <div id="page-content">
 
         <header class="site-header" role="banner">
-
-          <nav class="nav" aria-label="primary-navigation">
-
-            <a class="brand" href="../index.html" aria-label="Home">
-              <img src="../Imgs/Logos/D40 Monogram White Trans.png" alt=""><!--<h1><b><i>D40</i></b></h1>-->
+          <nav class="nav" aria-label="Primary navigation">
+            <a class="brand" href="../index.html" aria-label="D40 Agency home">
+              <img src="../Imgs/Logos/D40 Monogram White Trans.png" alt="">
               <span>Agency</span>
             </a>
 
             <div class="controls">
-              <a class="btn" href="services.html#seo" rel="noopener">Our SEO</a>
-              <a class="btn" href="services.html#web-dev" rel="noopener">Our Web Dev</a>
-              <!--<a class="btn" href="https://instagram.com/godhasdonia" target="_blank" rel="noopener">Log in</a>
-              <a class="btn" href="https://instagram.com/godhasdonia" target="_blank" rel="noopener">Sign in</a>-->
-            </div> 
+              <a class="btn" href="services.html#seo">Our SEO</a>
+              <a class="btn" href="services.html#web-dev">Our Web Dev</a>
+            </div>
 
+            <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+              <span class="nav-toggle__bar"></span>
+              <span class="nav-toggle__bar"></span>
+              <span class="nav-toggle__bar"></span>
+            </button>
           </nav>
 
-          <div> 
-            <!-- New navigation menu under header -->
+          <div class="sub-nav-wrap" id="mobileMenu">
             <nav class="sub-nav" aria-label="Main navigation">
-
-            <ul>
-                <li><h2><a href="../index.html">Home</a></h2></li>
-                <li><h2><a href="about.html">About</a></h2></li>
-                <li><h2><a href="services.html">Services</a></h2></li>
-                <!--<li><h2><a href="contact.html">Contact</a></h2></li> -->
-            </ul>
-
+              <ul><li><a href="../index.html">Home</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="services.html">Services</a></li></ul>
             </nav>
+
+            <div class="mobile-controls">
+              <a class="btn" href="services.html#seo">Our SEO</a>
+              <a class="btn" href="services.html#web-development">Our Web Dev</a>
+            </div>
+
           </div>
-    
         </header>
 
       <main class="services-hero">
@@ -520,14 +520,14 @@
           <ul class="footer__list">
             <li><a href="about.html">About</a></li>
             <li><a href="services.html">Services</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <!--<li><a href="contact.html">Contact</a></li>-->
           </ul>
+          <p class="footer__social" rel="noopener">info@d40agency.com</p>
         </div>
       </div>
 
       <div class="footer__bottom">
         <p class="footer__copy">&copy; <span id="footer-year">2026</span> D40 Digital Agency<span class="footer__location"> · South Africa</span></p>
-        <!--<a class="footer__social" href="#" target="_blank" rel="noopener">LinkedIn</a>-->
       </div>
     </footer>
 
@@ -541,9 +541,33 @@
       .tiers__intro, .tier-step__bar, .tier-step__copy, .tiers__addon,
       .synergy__intro, .synergy__statement, .flow__track, .flow__node, .synergy__cta,
       .finder__intro, .finder__options {
-        opacity: 1 !important; transform: none !important; clip-path: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        clip-path: none !important;
       }
-      .engine::after { transform: none !important; }
+      .engine::after {
+        transform: none !important;
+      }
+      .nav-toggle {
+        display: none !important;
+      }
+      .controls {
+        display: flex !important;
+      }
+      .mobile-controls {
+        display: none !important;
+      }
+      .sub-nav-wrap {
+        position: static !important;
+        max-height: none !important;
+        visibility: visible !important;
+        overflow: visible !important;
+        background: none !important;
+        backdrop-filter: none !important;
+      }
+      .sub-nav ul {
+        flex-direction: row !important;
+      }
     </style></noscript>
 
     <script src="../JS/common.js"></script>
